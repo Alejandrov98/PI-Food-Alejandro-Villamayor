@@ -13,20 +13,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    resumen: {
+    summary: {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    nivelSalud: {
+    healthScore: {
       type: DataTypes.FLOAT
     },
-    imagen: {
+    image: {
       type: DataTypes.STRING
     },
-    pasos: {
+    steps: {
       type: DataTypes.TEXT
     },
-    creadoDB: {
+    createDB: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     }
