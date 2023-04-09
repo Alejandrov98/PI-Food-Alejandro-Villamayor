@@ -6,10 +6,10 @@ const axios = require("axios"); // para realizar las peticiones http
 
 async function getRecipesForApi() {
   try {
-    let Information = await axios(
+    const Information = await axios(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
     );
-    let infoMain = Information.data?.results.map((i) => {
+    const infoMain = Information.data?.results.map((i) => {
       return {
         id: i.id,
         name: i.title,
@@ -27,7 +27,8 @@ async function getRecipesForApi() {
   } catch (error) {
     console.log("Error: ", error);
   }
-}
+};
+
 
 async function getDbRecipes() {
   // Solicito la informacion los elementos en la DB y que incluya informacion del modelo de dietas atravez de un atributo especifico (en este caso el nombre) en este nombre se hara la relacion entre Diets y Recipes
@@ -40,7 +41,8 @@ async function getDbRecipes() {
       },
     },
   });
-}
+};
+
 
 async function giveMeAllRecipes() {
   //Utilizamos la funcion que pido los datos de la api y la funcion que pide las recetas de la DB
@@ -49,33 +51,6 @@ async function giveMeAllRecipes() {
   const allRecipes = await saveApiInformation.concat(saveDbInformation);
 
   return allRecipes;
-}
-
-async function createDiets(){
-  const tipos = ["gluten free", "dairy free", "lacto ovo vegetarian", "vegan", "paleolithic", "primal", "whole 30",
-  "fodmap friendly", "vegetarian", "pescatarian", "ketogenic"];
-  let id = 0;
-  tipos.forEach(dieta => {
-      Diets.findOrCreate({ where: { id: ++id, name: dieta }})
-  })
-  const types_of_diet = await Diets.findAll();
-  return (types_of_diet)
-};
-
-const getDietsHandler = async (req, res) => {
-  try {
-    let dietsArray = []
-    const apiDiets = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data.results;
-    const dietsMap = apiDiets.map(d => {
-      // dietsArray.push(d.diets)
-      // const dietsSet = new Set diets
-      Diets.findOrCreate( { where: { name: d.diets }})
-    })
-    console.log(dietsMap);
-    return dietsMap
-  } catch (error) {
-    console.log(error)
-  }
 };
 
 
@@ -90,23 +65,10 @@ async function crearID(){
 };
 
 
-// async function createRecipe(name, summary, healthScore, image, steps, types_of_diet ){
-//   const receta  = await Recipe.create({
-//     name: name,
-//     summary: summary,
-//     healthScore: healthScore,
-//     image: image,
-//     steps: steps
-//   })
-//   types_of_diet.map(async(type)=>{ const dieta = await Diets.findOne({ whare: {name: type}} )
-//     await receta.addDiets(dieta)
-//   })
-//   return receta
-//}
-
-async function crearReceta(name, summary, healthScore, image, steps, tipoDietas){
+async function createRecipe(name, summary, healthScore, image, steps, typeDiets){
   const id = await crearID()
-  const receta = await Recipe.create({
+  console.log("entrando al controlador de creacion de receta");
+  const recipe = await Recipe.create({
       id: id,
       name: name,
       summary: summary,
@@ -114,12 +76,14 @@ async function crearReceta(name, summary, healthScore, image, steps, tipoDietas)
       image: image,
       steps: steps
   })
-  tipoDietas.map(async(diet) => {const dieta = await Diets.findOne({ where: { name: diet }})
-  await receta.addDiets(dieta); })
-  return receta
-}
+  console.log("se creo la receta en la base de datos");
+  typeDiets.map(async(diet) => {const dietName = await Diets.findOne({ where: { name: diet }})
+  await recipe.addDiets(dietName); })
+  console.log("se asociaron las dietas a la receta");
+  return recipe
+};
 
-function validarAtributos(name, summary, healthScore, image, steps, tipoDietas){
+function validateAttributes(name, summary, healthScore, image, steps){
   if (!name || (typeof name !== "string") || (name.length < 0) ){
       return "El nombre de la receta debe existir y debe ser una cadena de caracteres"
   } else if (!summary || (typeof summary !== "string") || (summary.length < 0) ){
@@ -131,15 +95,37 @@ function validarAtributos(name, summary, healthScore, image, steps, tipoDietas){
   } else if (steps && typeof steps !== "string" ){
       return "Los steps a seguir de la receta debe ser una cadena de texto o estar vacios"
   } else {
+    console.log("todos los atributos son correctos");
       return true
   }
-}
+};
+
+async function saveDietsInDb(){
+  const Information = (await axios(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+  )).data?.results;
+  const infoMain = Information.map(async(recipe)=>{
+    recipe.diets.map(async(diet)=>{
+      await Diets.findOrCreate({
+        where: { name: diet },
+        defaults: { name: diet }
+      })
+    })
+  });
+  return 
+};
+
+
+async function giveMeAllDiets(){
+  const allDiets = await Diets.findAll();
+  return allDiets
+};
 
 module.exports = {
     giveMeAllRecipes,
-    createDiets,
-    crearReceta,
+    createRecipe,
     crearID,
-    validarAtributos,
-    getDietsHandler,
+    validateAttributes,
+    saveDietsInDb,
+    giveMeAllDiets,
 }

@@ -4,9 +4,9 @@ const { Router } = require("express");
 const router = Router();
 const {
   giveMeAllRecipes,
-  crearReceta,
-  validarAtributos,
-  getDietsHandler,
+  createRecipe,
+  validateAttributes,
+  giveMeAllDiets
 } = require("../controllers/Functions");
 const { Recipe, Diets } = require("../db");
 
@@ -52,32 +52,34 @@ router.get("/recipes/:id", async (req, res) => {
   }
 });
 
-router.get("/diets", async (req, res) => {
+
+router.post("/recipes", async(req, res)=>{
   try {
-    
-  } catch (error) {
+      const { name, summary, healthScore, image, steps, diets } = req.body;
+      const validation =  validateAttributes(name, summary, healthScore, image, steps, diets);
+      if (validation === true){
+        console.log("SE VALIDARON LOS RATOS DE BODY");
+          const newRecipe = await createRecipe(name, summary, healthScore, image, steps, diets)
+          console.log("SE CREO LA RECETA");
+          if(newRecipe){
+              return res.status(201).json(newRecipe)
+          } 
+      } else {
+          return res.status(404).send(validation)
+      }
+  } catch (error){
+    console.log("ALGO PASO QUE NO SE CREO LA RECETA");
     return res.status(400).send("Error ", error);
   }
 });
 
-
-
-router.post("/recipes", async(req, res, next)=>{
+router.get("/diets", async (req, res) => {
   try {
-      const { name, summary, healthScore, image, steps, diets } = req.body;
-      const validacion = validarAtributos(name, summary, healthScore, image, steps, diets);
-      if (validacion === true){
-          const receta = await crearReceta(name, summary, healthScore, image, steps, diets)
-          if(receta){
-              return res.status(201).json(receta)
-          } 
-      } else {
-          return res.status(404).send(validacion)
-      }
-  } catch (err){
-      next(err)
+    const allDiets = await giveMeAllDiets();
+    return res.status(200).json(allDiets);
+  } catch (error) {
+    return res.status(400).send("Error ", error);
   }
 });
-
 
 module.exports = router;
