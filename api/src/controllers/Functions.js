@@ -67,19 +67,20 @@ async function crearID(){
 
 async function createRecipe(name, summary, healthScore, image, steps, typeDiets){
   const id = await crearID()
-  console.log("entrando al controlador de creacion de receta");
+  //console.log("entrando al controlador de creacion de receta");
   const recipe = await Recipe.create({
       id: id,
       name: name,
       summary: summary,
       healthScore: healthScore,
       image: image,
-      steps: steps
+      steps: steps,
+      //typesOfDiets: typeDiets.map(async(diet) => {const dietName = await Diets.findOne({ where: { name: diet }}) })
   })
-  console.log("se creo la receta en la base de datos");
+  //console.log("se creo la receta en la base de datos");
   typeDiets.map(async(diet) => {const dietName = await Diets.findOne({ where: { name: diet }})
   await recipe.addDiets(dietName); })
-  console.log("se asociaron las dietas a la receta");
+  //console.log("se asociaron las dietas a la receta");
   return recipe
 };
 
@@ -95,8 +96,8 @@ function validateAttributes(name, summary, healthScore, image, steps){
   } else if (steps && typeof steps !== "string" ){
       return "Los steps a seguir de la receta debe ser una cadena de texto o estar vacios"
   } else {
-    console.log("todos los atributos son correctos");
-      return true
+    //console.log("todos los atributos son correctos");
+    return true
   }
 };
 

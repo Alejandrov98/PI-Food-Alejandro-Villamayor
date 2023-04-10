@@ -56,19 +56,19 @@ router.get("/recipes/:id", async (req, res) => {
 router.post("/recipes", async(req, res)=>{
   try {
       const { name, summary, healthScore, image, steps, diets } = req.body;
-      const validation =  validateAttributes(name, summary, healthScore, image, steps, diets);
+      const validation =  validateAttributes(name, summary, healthScore, image, steps);
       if (validation === true){
-        console.log("SE VALIDARON LOS RATOS DE BODY");
-          const newRecipe = await createRecipe(name, summary, healthScore, image, steps, diets)
-          console.log("SE CREO LA RECETA");
-          if(newRecipe){
-              return res.status(201).json(newRecipe)
-          } 
+        //console.log("SE VALIDARON LOS RATOS DE BODY");
+        const newRecipe = await createRecipe(name, summary, healthScore, image, steps, diets)
+        //console.log("SE CREO LA RECETA");
+        if(newRecipe){
+            return res.status(201).json(newRecipe)
+        } 
       } else {
           return res.status(404).send(validation)
       }
   } catch (error){
-    console.log("ALGO PASO QUE NO SE CREO LA RECETA");
+    //console.log("ALGO PASO QUE NO SE CREO LA RECETA");
     return res.status(400).send("Error ", error);
   }
 });

@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.TEXT
     },
+    // typesOfDiets: {
+    //   type: DataTypes.ARRAY(DataTypes.STRING),
+    //   defaultValue: []
+    // },
     createDB: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
