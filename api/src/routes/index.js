@@ -8,7 +8,6 @@ const {
   validateAttributes,
   giveMeAllDiets
 } = require("../controllers/Functions");
-const { Recipe, Diets } = require("../db");
 
 router.get("/recipes", async (req, res) => {
   try {
