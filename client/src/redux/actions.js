@@ -9,3 +9,12 @@ export function getRecipes() {
     })
   };
 }
+
+export function filterRecipesByDiets(payload){
+  return {
+    type: 'FILTER_BY_DIETS',
+    payload 
+  }
+}
+
+

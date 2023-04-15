@@ -5,7 +5,7 @@ export default function RecipeCard({ name, image, diets}) {
         <div>
             <h3>{name}</h3>
             <h5>{diets}</h5>
-            <img src={image} alt="recipe image" width="200px" height="250px" />
+            <img src={image} alt="recipe image"/>
         </div>
     )
 }

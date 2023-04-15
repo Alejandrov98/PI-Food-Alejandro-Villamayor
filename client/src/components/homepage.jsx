@@ -1,13 +1,26 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../redux/actions";
+import { getRecipes, filterRecipesByDiets } from "../redux/actions";
 import { Link } from "react-router-dom";
 import RecipeCard from "./card";
+import Paginated from "./Paginated";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recipesPerPage, setRecipesPerPage] = useState(9); //cantidad de recetas que me pide el readme
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOffFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipes = allRecipes.slice(
+    indexOffFirstRecipe,
+    indexOfLastRecipe
+  );
+
+  const paginated = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     dispatch(getRecipes());
@@ -16,6 +29,10 @@ export default function Home() {
   function handleClick(arg) {
     arg.preventDefault(); //Queremos evitar que cargue de nuevo la pagina
     dispatch(getRecipes());
+  }
+
+  function handleFilterDiets(diet) {
+    dispatch(filterRecipesByDiets(diet.target.value))
   }
 
   return (
@@ -35,7 +52,8 @@ export default function Home() {
           <option value="asc">upward</option>
           <option value="desc">downward</option>
         </select>
-        <select>
+        <select onChange={diet => handleFilterDiets(diet)}>
+          <option value="All">All</option>
           <option value="gluten free">gluten free</option>
           <option value="dairy free">dairy free</option>
           <option value="lacto ovo vegetarian">lacto ovo vegetarian</option>
@@ -53,16 +71,17 @@ export default function Home() {
           <option value="api">Existing</option>
         </select>
 
-        {allRecipes?.map((el) => {
+        <Paginated
+          recipesPerPage={recipesPerPage}
+          allRecipes={allRecipes.length}
+          paginated={paginated}
+        />
+
+        {currentRecipes?.map((el) => {
           return (
             <fragment>
               <Link to={"/home/" + el.id}></Link>
-              <RecipeCard
-                name={el.name}
-                image={el.img}
-                diets={el.diets}
-              />
-              ;
+              <RecipeCard name={el.name} image={el.image} diets={el.diets} />
             </fragment>
           );
         })}
