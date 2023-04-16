@@ -12,7 +12,6 @@ function App() {
         <Route exact path='/' component= {landingPage}/>
         <Route path='/home' component= {homePage}/>
         </Switch>
-      <h1>Henry Food asasaasaas</h1>
     </div>
     </BrowserRouter>
   );

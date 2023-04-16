@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filterRecipesByDiets } from "../redux/actions";
+import { getRecipes, filterRecipesByDiets, filterCreated } from "../redux/actions";
 import { Link } from "react-router-dom";
 import RecipeCard from "./card";
 import Paginated from "./Paginated";
@@ -35,6 +35,10 @@ export default function Home() {
     dispatch(filterRecipesByDiets(diet.target.value))
   }
 
+  function handleFilterCreated(event){
+    dispatch(filterCreated(event.target.value))
+  }
+
   return (
     <div>
       <Link to="/recipes">Create a Recipe</Link>
@@ -65,7 +69,7 @@ export default function Home() {
           <option value="paleolithic">paleolithic</option>
           <option value="ketogenic">ketogenic</option>
         </select>
-        <select>
+        <select onChange={event => handleFilterCreated(event)}>
           <option value="All">All</option>
           <option value="created">Created</option>
           <option value="api">Existing</option>
