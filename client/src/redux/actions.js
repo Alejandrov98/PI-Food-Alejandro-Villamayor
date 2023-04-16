@@ -25,4 +25,11 @@ export function filterCreated(payload){
   }
 }
 
+export function orderAlphabetically(payload){
+  return{
+    type: 'ORDER_ALPHABETICALLY',
+    payload
+  }
+}
+
 
