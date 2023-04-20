@@ -5,6 +5,7 @@ import { getRecipes, filterRecipesByDiets, filterCreated, orderAlphabetically } 
 import { Link } from "react-router-dom";
 import RecipeCard from "./card";
 import Paginated from "./Paginated";
+import SearchBar from "./searchBar";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -55,9 +56,10 @@ export default function Home() {
         onClick={(arg) => {
           handleClick(arg);
         }}
-      >
+        >
         Let's see it!
       </button>
+        <SearchBar/>
 
       <div>
         <select onChange={abc => handleSort(abc)}>
@@ -92,8 +94,9 @@ export default function Home() {
         {currentRecipes?.map((el) => {
           return (
             <fragment>
-              <Link to={"/home/" + el.id}></Link>
+              <Link to={"/recipes/" + el.id}>
               <RecipeCard name={el.name} image={el.image} diets={el.diets} />
+              </Link>
             </fragment>
           );
         })}
