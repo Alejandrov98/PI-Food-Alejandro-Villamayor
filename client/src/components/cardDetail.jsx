@@ -14,20 +14,20 @@ export default function Detail() {
   }, [dispatch, id]);
 
 
-  return (
+  return (                                 // tuve que usar expression regulara por que me traia caracteres inecesarios en el resumen 
     console.log(MyRecipe[0]),
     <div>
       {MyRecipe.length > 0 ? (
         <div>
           <h1>This is {MyRecipe[0].name}</h1>
           <img src={MyRecipe[0].image} alt="Recipe Image" />
-          <h2>Summary: {MyRecipe[0].summary}</h2>
+          <h2>Summary: {MyRecipe[0].summary.replace(/<[^>]*>?/g, '')}</h2> 
           <p>Health Score: {MyRecipe[0].healthScore}</p>
           <h4>
             diets:{" "}
             {!MyRecipe[0].createdDB
               ? MyRecipe[0].diets + " "
-              : MyRecipe[0].diets.map((el) =>  el.name + (' '))
+              : MyRecipe[0].diets.map((el) =>  el.name + (' ')) // por alguna razon todavia me figura Object Object
               
               
               }

@@ -1,0 +1,24 @@
+.paginated {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .paginated a {
+    display: inline-block;
+    background-color: orange;
+    color: white;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .paginated a:hover {
+    background-color: white;
+    color: orange;
+    cursor: pointer;
+  }
+  

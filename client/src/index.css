@@ -5,8 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./images/LandingPage.jpg");
+  background-image: url("./images/background.jfif");
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 
