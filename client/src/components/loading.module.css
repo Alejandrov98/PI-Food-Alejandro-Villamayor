@@ -1,0 +1,8 @@
+.fix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-bottom: 10%;
+  transform: scale(0.5)
+}

@@ -7,6 +7,7 @@ import RecipeCard from "./card";
 import Paginated from "./Paginated";
 import SearchBar from "./searchBar";
 import style from "../components/card.module.css"
+import styleB from  "./button.module.css"
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -51,15 +52,8 @@ export default function Home() {
 
   return (
     <div>
-      <Link to="/recipes">Create a Recipe</Link>
+      <Link className={styleB.bot} to="/recipes">Create a Recipe</Link>
       <h1>What do you want to eat today?</h1>
-      <button
-        onClick={(arg) => {
-          handleClick(arg);
-        }}
-        >
-        Let's see it!
-      </button>
         <SearchBar/>
 
       <div>

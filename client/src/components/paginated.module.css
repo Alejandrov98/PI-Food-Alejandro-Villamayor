@@ -21,4 +21,8 @@
     color: orange;
     cursor: pointer;
   }
+
+  ul {
+    list-style-type: none;
+  }
   
