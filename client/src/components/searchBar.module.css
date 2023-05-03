@@ -1,0 +1,15 @@
+.input {
+    font-family: just tell me what;
+    border-radius: 5px;
+    border-color: peachpuff;
+    font-size: 150%; /* 50% más grande */
+    height: 150%; /* 50% más alto */
+  }
+
+.contain {
+  background-image: url("C:\Users\Usuario\Desktop\PI Food Alejandro Villamayor\PI-Food-main\client\src\design\backgroundInput.jfif");
+  display: inline-block;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}

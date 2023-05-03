@@ -27,10 +27,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
-      case "GET_DIETS":
+    case "GET_DIETS":
       return {
         ...state,
-        diets: action.payload 
+        diets: action.payload,
       };
     case "FILTER_CREATED":
       const allRecipes_2 = state.filterRecipes;
@@ -88,15 +88,27 @@ function rootReducer(state = initialState, action) {
         ...state,
         recipes: action.payload,
       };
-      case "GET_DETAILS":
-      return{
+    case "GET_DETAILS":
+      return {
         ...state,
-        detail: action.payload
-      }
+        detail: action.payload,
+      };
+    case "CLEAN":
+      return {
+        ...state,
+        detail: [],
+      };
 
     default:
       return state;
   }
 }
+
+// CASE PARA EL DELETE
+// case "DELETE_RECETA": return {
+//     ...state,
+//     recipes: state.allRecipes.filter(r => r.id !== action.payload)
+//     filterRecipes: state.allRecipes.filter(r => r.id !== action.payload)
+// }
 
 export default rootReducer;

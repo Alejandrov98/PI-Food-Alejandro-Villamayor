@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameRecipes } from "../redux/actions";
 import styleB from  "./button.module.css"
+import style from "./searchBar.module.css"
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -19,11 +20,12 @@ export default function SearchBar() {
   }
 
   return (
-    <div>
-      <input
+    <div className={style.contain}>
+      <input 
         type="text"
         placeholder="Search..."
         onChange={(event) => handleInputChange(event)}
+        className={style.input}
       />
       <button className={styleB.bot} type="submit" onClick={(event) => handleSubmit(event)}>
         Search

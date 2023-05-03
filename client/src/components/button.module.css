@@ -1,21 +1,23 @@
 .bot {
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 4px;
-    background-color: #e88460;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    margin-top: 10px;
-  }
-
-  .bot:hover {
-    background-color: white;
-    color: #e88460;
-    transform: scale(1.05);
-    transition: all 0.3s ease-in-out;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #e88460;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  margin-top: 10px;
+  outline: none;
+  margin-left: 5px;
+  border: 1px solid #e88460;
   }
   
+  .bot:hover {
+  background-color: white;
+  color: #e88460;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  }
   

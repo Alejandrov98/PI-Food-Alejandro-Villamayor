@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "Clasicalderibbon";
+    src: url("C:\Users\Usuario\Desktop\PI Food Alejandro Villamayor\PI-Food-main\client\public\font\Clasicalderibbon.ttf");
+  }
+
+input {
+  font-family: "Old London", serif;
+  font-size: 1.4em;
+  background-color: rgba(255, 218, 185, 0.5);
+  border: 2px solid rgba(255, 218, 185, 1);
+  border-radius: 5px;
+  padding: 7px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.inputs-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px; 
+  margin-top: 50px;
+}
+
+.h1{
+  font-family: 'UnifrakturCook', sans-serif;
+  font-size: 28px;
+  color: #000000;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #FFA500;
+  background-color: #FFA500;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "\2713";
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  text-align: center;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+

@@ -1,13 +1,13 @@
 .contain {
   
-  border-radius: 10px; /* Redondear los bordes */
-  padding: 10px; /* Agregar espacio interno */
-  width: 25%; /* Establecer el ancho al 30% */
-  display: inline-block; /* Mostrar los elementos div uno al lado del otro */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Agregar sombra alrededor del elemento */
-  margin: 15px; /* Agregar margen alrededor del elemento */
-  margin-bottom: 20px; /* Aumentar el margen hacia abajo */
-  height: auto; /* establecer la altura al tamaño del contenido */
+  border-radius: 10px; 
+  padding: 10px; 
+  width: 25%; 
+  display: inline-block; 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+  margin: 15px; 
+  margin-bottom: 20px; 
+  height: auto; 
   background-image: url('C:\Users\Usuario\Desktop\PI Food Alejandro Villamayor\PI-Food-main\client\src\design\cooking_ingredients.jfif');
   background-size: cover;
 }
@@ -20,20 +20,22 @@
 
 
 .h3{
-  font-family: "bodoni"; 
-  font-size: 20px; 
-  color: black;
+  font-family: 'UnifrakturCook', sans-serif;
+  font-size: 28px;
+  color: #000000;
+  text-transform: capitalize;
+  letter-spacing: 2px;
 }
 
 .h5{
-  font-family: "bodoni"; 
+  font-family: "Garamond"; 
   font-size: 15px; 
   color: black;
 }
 
 .img {
-  border-radius: 10px; /* redondear los bordes de la imagen */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* agregar una sombra */
+  border-radius: 10px; 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
   width: 80%
 }
 

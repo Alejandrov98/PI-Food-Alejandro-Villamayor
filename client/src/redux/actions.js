@@ -5,10 +5,22 @@ export function getRecipes() {
     var json = await axios.get("http://localhost:3001/recipes");
     return dispatch({
       type: "GET_RECIPES",
-      payload: json.data,
+      payload: json.data, //El Payload se refiere a los datos que se transmiten como parte de una solicitud o respuesta, y su formato y contenido dependerá del tipo de solicitud que se esté realizando y del protocolo de comunicación utilizado.
     });
   };
 }
+
+// export const getRecipes = () => {
+//   return async function(dispatch){
+//       axios.get("http://localhost:3001/recipes")
+//       .then((res)=>{
+//           return dispatch({
+//               type: GET_RECIPES,s
+//               payload: res.data
+//           })
+//       })
+//       .catch((err)=>{console.log(err)})
+//   }
 
 export function filterRecipesByDiets(payload) {
   console.log(payload);
@@ -72,3 +84,18 @@ export function getDetail(id) {
     }
   };
 }
+
+export const CleanById  =()=>{
+  return {
+      type: "CLEAN"
+  }
+}
+
+
+// Funcion DELETE
+// export const deletearReceta = (id) => {
+//     return {
+//         type: DELETE_RECETA,
+//         payload: id
+//     }
+// };

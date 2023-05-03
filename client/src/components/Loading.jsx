@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 
 
 export default function Loading() {
-  const history = useHistory();
+  const history = useHistory(); //definimos el hook useHistory para redirigir al usuario a la página de inicio después de que termine la pantalla de carga.
 
   useEffect(() => {
     const video = document.getElementById("loading-video");
@@ -17,7 +17,7 @@ export default function Loading() {
 
     const timeoutId = setTimeout(() => {
       history.push('/home');
-    }, 4000);
+    }, 2000); //reproducir automáticamente el video de carga después de que se haya cargado completamente. También definimos un temporizador para redirigir al usuario después de 2 segundos.
 
     return () => {
       clearTimeout(timeoutId);

@@ -1,0 +1,82 @@
+.title {
+  text-align: center;
+  font-family: "Garamond", serif;
+  font-size: 24px;
+  background-color: #f7e4d4;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.img {
+    border-radius: 10px;
+    margin: 0 auto 20px auto;
+    display: block;
+    max-width: 300px;
+    background-size: cover;
+    background-position: center;
+    background-color: #fdf3e7;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-bottom: 10px;
+  } 
+  
+
+.summary {
+  font-family: "Garamond", serif;
+  font-size: 18px;
+  text-align: justify;
+  margin: 0 auto;
+  max-width: 800px;
+  line-height: 1.5;
+  padding: 20px;
+  background-color: #fdf3e7;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.healthScore {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+  background-color: #fdf3e7;
+  color: #000;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin-right: 20px;
+  text-transform: capitalize;
+}
+
+.diets {
+    font-family: "Garamond", sans-serif;
+    font-size: 16px;
+    background-color: #FDF3E7;
+    color: #000;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-transform: capitalize;
+    display: inline-block;
+    }
+.bot {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #e88460;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  outline: none;
+  margin-left: 5px;
+  border: 1px solid #e88460;
+}
+
+.bot:hover {
+  background-color: white;
+  color: #e88460;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}

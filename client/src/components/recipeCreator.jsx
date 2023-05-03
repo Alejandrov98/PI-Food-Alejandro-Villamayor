@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom"; //redirige a la ruta que yo le indique (useHistory)
 import { postRecipe, getDiets } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import style from "./recipeCreator.module.css"
+import styleB from  "./button.module.css"
 
 function validate(input) {
   let errors = {};
@@ -34,6 +36,7 @@ export default function RecipeCreate() {
       ...input,
       [e.target.name]: e.target.value,
     });
+    console.log(input);
     setErrors(
       validate({
         ...input,
@@ -46,9 +49,10 @@ export default function RecipeCreate() {
     if (e.target.checked) {
       setInput({
         ...input,
-        status: e.target.value,
+        diets:[...input.diets, e.target.value],
       });
     }
+    console.log(input);
   }
 
   function handleBox(e) {
@@ -60,6 +64,10 @@ export default function RecipeCreate() {
 
   function handleSubmit(e) {
     e.preventDefault();
+      setInput({
+        ...input,
+        healthScore: Number(e.target.value)
+      });
     console.log(input);
     dispatch(postRecipe(input));
     alert("Recipe Created!"); //No me gusta, modificar si hay tiempo
@@ -76,14 +84,16 @@ export default function RecipeCreate() {
 
   useEffect(() => {
     dispatch(getDiets());
-  }, []);
+  }, [dispatch]);
+
+
   return (
     <div>
       <Link to="/home">
-        <button>Back</button>
+        <button className={styleB.bot}>Back</button>
       </Link>
-      <h1>Create your recipe</h1>
-      <form>
+      <h1 className={style.h1}>Create your recipe</h1>
+      <form className={style.container} onSubmit={handleSubmit}>
         <div>
           <label>Recipe Name:</label>
           <input
@@ -91,6 +101,7 @@ export default function RecipeCreate() {
             value={input.name}
             name="name"
             onChange={handleChange}
+            placeholder="Example: Chicken with rice"
           />
           {errors.name && <p className="error">{errors.name}</p>}
         </div>
@@ -119,7 +130,9 @@ export default function RecipeCreate() {
             value={input.image}
             name="image"
             onChange={handleChange}
+            placeholder="Enter a url here!"
           />
+          <div>{input.image ? <div><img src={input.image}/></div> : null}</div>
         </div>
         <div>
           <label>Steps:</label>
@@ -128,6 +141,7 @@ export default function RecipeCreate() {
             value={input.steps}
             name="steps"
             onChange={handleChange}
+            placeholder="Step 1: Cut the onions Step 2:..."
           />
         </div>
         <div>
@@ -232,11 +246,8 @@ export default function RecipeCreate() {
               onChange={(e) => handleCheck(e)}
             />
           </label>
-          <ul>
-            <li>{input.diets.map((el) => el + " ,")}</li>
-          </ul>
         </div>
-        <button type="submit">Create Recipe</button>
+        <button className={styleB.bot} type="submit">Create Recipe</button>
       </form>
     </div>
   );
